@@ -16,23 +16,63 @@ bun dev
 
 ![Screenshot](images/mainpage.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# TinyLink – URL Shortener
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+TinyLink is a minimal and functional URL shortening service similar to bit.ly.  
+It allows users to create short links, view statistics, delete links, and perform redirects.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project is built using **Next.js (App Router)**, **Prisma**, **PostgreSQL**, and **Tailwind CSS**.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📌 Assignment Requirements (Completed)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- ✔ Build a working URL shortener  
+- ✔ Use Next.js (as suggested)  
+- ✔ Clean UI with proper states  
+- ✔ Publish a **live deployed URL**  
+- ✔ Public GitHub repository  
+- ✔ Provide a demo walkthrough video  
+- ✔ Provide ChatGPT transcript  
+- ✔ Follow exact API contract and route conventions  
+- ✔ Implement Dashboard, Stats page, Redirect route, Health check  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+# 🚀 Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🔗 URL Shortening  
+- Add a long URL  
+- Optionally provide a custom short code  
+- Validate URL format  
+- Code uniqueness enforced (409 on duplicate)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### ↪ Redirect  
+- Visiting `/code` → performs **302 redirect**  
+- Increments click count  
+- Updates last clicked timestamp
+
+### ❌ Delete  
+- Delete short links  
+- After deletion, `/code` must return **404**
+
+### 📊 Dashboard  
+Shows all links with:  
+- Code  
+- Long URL  
+- Total clicks  
+- Last clicked  
+- Delete action  
+
+### 📈 Stats Page  
+`/code/:code` → View:  
+- Code  
+- Full URL  
+- Total clicks  
+- Last clicked  
+
+### ❤️ Health Check  
+`/healthz` → returns:  
+```json
+{ "ok": true, "version": "1.0" }
+
