@@ -76,3 +76,126 @@ Shows all links with:
 ```json
 { "ok": true, "version": "1.0" }
 
+
+🛠️ Tech Stack
+
+Next.js 14 (App Router)
+
+React
+
+TypeScript
+
+Prisma ORM
+
+PostgreSQL (Neon / Supabase / Railway)
+
+Tailwind CSS v4
+
+Vercel Hosting
+
+📂 Project Structure
+/app
+ │── page.tsx               → Dashboard
+ │
+ ├── /api
+ │     ├── /links
+ │     │      └── route.ts  → POST (create), GET (list)
+ │     │
+ │     └── /links/[code]
+ │             └── route.ts → GET (stats), DELETE (remove)
+ │
+ ├── /code/[code]
+ │       └── page.tsx       → Stats page UI
+ │
+ ├── /healthz
+ │       └── route.ts       → Health check
+ │
+/prisma
+ └── schema.prisma          → Database Schema
+
+🧪 API Documentation
+✔ POST /api/links — Create Short Link
+Request Body
+{
+  "url": "https://example.com",
+  "code": "custom12"
+}
+
+Responses
+
+201 Created
+
+{
+  "message": "Short link created",
+  "shortCode": "custom12"
+}
+
+
+409 Conflict
+
+{ "error": "Code already exists" }
+
+✔ GET /api/links — List All Links
+
+Returns array of all links.
+
+✔ GET /api/links/:code — Get Stats
+
+Success:
+
+{
+  "code": "abc123",
+  "url": "https://example.com",
+  "clicks": 5,
+  "lastClicked": "2025-02-18T10:00:23.000Z"
+}
+
+
+404:
+
+{ "error": "Code not found" }
+
+✔ DELETE /api/links/:code — Delete a Link
+
+Success:
+
+{ "message": "Deleted successfully" }
+
+
+404:
+
+{ "error": "Not found" }
+
+🔄 Redirect Route
+
+Path:
+
+/:code
+
+
+Behavior:
+
+If code exists → 302 redirect
+
+If not → 404 Not Found
+
+❤️ Health Check Endpoint
+
+GET /healthz
+Returns:
+
+{ "ok": true, "version": "1.0" }
+
+🛠️ Environment Variables
+
+Create .env file:
+
+DATABASE_URL="Your_Postgres_Connection_String"
+NEXT_PUBLIC_BASE_URL="http://localhost:3000"
+
+
+Also include .env.example in repo:
+
+DATABASE_URL=
+NEXT_PUBLIC_BASE_URL=
+
