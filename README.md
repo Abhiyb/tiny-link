@@ -76,23 +76,6 @@ Shows all links with:
 ```json
 { "ok": true, "version": "1.0" }
 
-
-🛠️ Tech Stack
-
-Next.js 14 (App Router)
-
-React
-
-TypeScript
-
-Prisma ORM
-
-PostgreSQL (Neon / Supabase / Railway)
-
-Tailwind CSS v4
-
-Vercel Hosting
-
 📂 Project Structure
 /app
  │── page.tsx               → Dashboard
